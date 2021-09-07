@@ -1,15 +1,16 @@
-import styled from "@emotion/styled";
+import { styled, Container } from "@material-ui/core";
+import NoteFeed from "./app/NoteFeed";
 
-const AppComponent = styled.div({
+const AppComponent = styled(Container)({
     textAlign: "center",
     backgroundColor: "#bdf5f2",
-    width: "100%",
-})
+    minWidth: "100%",
+});
 
 function App() {
   return (
     <AppComponent>
-      Something
+      <NoteFeed />
     </AppComponent>
   );
 }
