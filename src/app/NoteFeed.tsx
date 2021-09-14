@@ -1,20 +1,28 @@
-import { styled, TextField } from "@material-ui/core";
+import { Container, styled } from "@material-ui/core";
+import Note from "../model/Note";
+import useNotes from "../command/NoteContext";
+import NoteInput from "./NoteInput";
+import NoteWrapper from "./NoteWrapper";
 
-type Props = {
-    
+const MapNotes = (notes: Note[]) => {
+  return notes.map((note: Note) => {
+    return(<NoteWrapper key={note.timeStamp.toString()} note={note} />)
+  });
 };
+  
+const NoteFeed = () => {
+  const {notes} = useNotes();
 
-const NoteFeed = (props: Props) => {
-    const TextFieldComponent = styled(TextField)({
-        minWidth: "40%"
-    })
-    return(
-        <TextFieldComponent 
-            multiline 
-            variant="outlined" 
-            label="Add Note"
-            onSubmit={onConfirm}/>
-    )
+  const NoteFeedComponent = styled(Container)({
+    minWidth: "50%"
+  });
+
+  return(
+    <NoteFeedComponent>
+        {MapNotes(notes)}
+        <NoteInput />
+    </NoteFeedComponent>
+  )
 };
 
 export default NoteFeed;
